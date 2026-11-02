@@ -1,6 +1,6 @@
 # Etapa 6 — Edição de contatos
 
-> Status: **planejada**
+> Status: **concluída**
 
 ## Objetivo
 Permitir editar um contato: carregar seus dados no formulário, indicar o modo de edição e salvar ou cancelar.
@@ -25,6 +25,23 @@ Permitir editar um contato: carregar seus dados no formulário, indicar o modo d
 ## Como testar
 Editar um contato, salvar e confirmar a alteração na lista e após recarregar. Testar o botão Cancelar (não deve alterar nada).
 
+## Resultado
+Implementado em `app.js`:
+- `iniciarEdicao(id)` — preenche o formulário, grava o id em `#contato-id`, muda o título para "Editar contato", o botão para "Salvar" e exibe "Cancelar".
+- `editarContato(id, dados)` — atualiza o objeto no array (sem criar novo), salva e re-renderiza.
+- `cancelarEdicao()` — limpa o formulário e restaura o modo "Novo contato" / botão "Adicionar" / Cancelar oculto.
+- `aoEnviarFormulario()` passou a bifurcar: com `#contato-id` preenchido → `editarContato()`; vazio → `adicionarContato()`.
+- `aoClicarNaLista()` ganhou o ramo da ação "editar" (delegação).
+- `removerContato()` chama `cancelarEdicao()` se o contato removido estava em edição.
+- Listener do botão "Cancelar" registrado em `iniciar()`.
+
+### Teste funcional (navegador)
+- Iniciar edição: form preenchido, título "Editar contato", botão "Salvar", Cancelar visível. ✅
+- Salvar: atualiza o contato existente (total de cards permanece o mesmo — não cria duplicata) e volta ao modo "novo". ✅
+- Edição persiste no Local Storage após recarregar a página. ✅
+- Cancelar: limpa o formulário sem alterar os dados. ✅
+- Remover um contato que está em edição: formulário volta ao modo "novo" automaticamente. ✅
+
 ## Entregáveis
-- `iniciarEdicao()`, `editarContato()`, `cancelarEdicao()` em `app.js`.
-- Esta documentação atualizada com o resultado.
+- `iniciarEdicao()`, `editarContato()`, `cancelarEdicao()` em `app.js`. ✅
+- Esta documentação atualizada com o resultado. ✅
