@@ -3,6 +3,7 @@
 // Etapa 3: camada de dados e persistência (Local Storage)
 // Etapa 4: cadastro, listagem dinâmica e estado vazio
 // Etapa 5: remoção de contatos (delegação de eventos)
+// Etapa 7: busca e filtro em tempo real por nome e e-mail
 // ============================================================
 
 // Chave usada para guardar os contatos no Local Storage.
@@ -121,7 +122,7 @@ function criarCardContato(contato) {
  * Renderiza a lista de contatos recebida (por padrão, todos).
  * Limpa o container e recria os cards a partir dos dados.
  */
-function renderizarLista(lista = contatos) {
+function renderizarLista(lista = filtrarContatos(campoBusca.value)) {
     listaEl.innerHTML = "";
     lista.forEach((contato) => listaEl.appendChild(criarCardContato(contato)));
     atualizarEstadoVazio(lista);
@@ -136,7 +137,9 @@ function atualizarEstadoVazio(lista) {
     const vazio = lista.length === 0;
     estadoVazioEl.hidden = !vazio;
     if (vazio) {
-        estadoVazioEl.textContent = "Nenhum contato cadastrado ainda.";
+        estadoVazioEl.textContent = contatos.length === 0
+            ? "Nenhum contato cadastrado ainda."
+            : "Nenhum contato encontrado.";
     }
 }
 
@@ -151,6 +154,18 @@ function atualizarContador() {
 // ------------------------------------------------------------
 // Operações
 // ------------------------------------------------------------
+
+/**
+ * Filtra os contatos por nome ou e-mail sem alterar os dados cadastrados.
+ * Ignora maiúsculas, minúsculas e espaços nas extremidades do termo.
+ */
+function filtrarContatos(termo) {
+    const busca = termo.trim().toLowerCase();
+    return contatos.filter((contato) =>
+        contato.nome.toLowerCase().includes(busca)
+        || contato.email.toLowerCase().includes(busca)
+    );
+}
 
 /**
  * Cria um novo contato a partir dos dados do formulário e salva.
@@ -260,6 +275,7 @@ function iniciar() {
     renderizarLista();
     form.addEventListener("submit", aoEnviarFormulario);
     listaEl.addEventListener("click", aoClicarNaLista);
+    campoBusca.addEventListener("input", () => renderizarLista());
 }
 
 document.addEventListener("DOMContentLoaded", iniciar);
