@@ -1,8 +1,255 @@
-/* Estilos da aplicação — preenchido na Etapa 2.
-   Reset mínimo apenas para a estrutura ficar legível na Etapa 1. */
-* { box-sizing: border-box; }
+/* Estilos da aplicação — layout e responsividade da Etapa 2. */
+:root {
+  --fundo: #f3f6f4;
+  --superficie: #ffffff;
+  --texto: #243b32;
+  --texto-suave: #5d6f65;
+  --borda: #dce5df;
+  --verde: #246347;
+  --verde-escuro: #194b35;
+  --verde-claro: #eaf3ed;
+  --vermelho: #a33737;
+  --espaco: 24px;
+  --raio: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: system-ui, Arial, sans-serif;
+  font-size: 16px;
   line-height: 1.5;
+  color: var(--texto);
+  background: var(--fundo);
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+.cabecalho, .conteudo, .rodape {
+  width: min(1120px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+.cabecalho {
+  padding: 48px 0 32px;
+  border-bottom: 1px solid var(--borda);
+}
+
+.cabecalho h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.subtitulo {
+  margin-top: 10px;
+  color: var(--texto-suave);
+}
+
+.conteudo {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--espaco);
+  padding-block: 32px;
+}
+
+.painel {
+  min-width: 0;
+  padding: var(--espaco);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background: var(--superficie);
+  box-shadow: 0 4px 16px #243b3208;
+}
+
+.titulo-secao {
+  font-size: 1.2rem;
+  font-weight: 650;
+}
+
+.formulario {
+  display: grid;
+  gap: 20px;
+  margin-top: var(--espaco);
+}
+
+.campo {
+  display: grid;
+  gap: 8px;
+}
+
+.campo label {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.campo input {
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid #bacbc0;
+  border-radius: 8px;
+  font: inherit;
+  color: var(--texto);
+  background: var(--superficie);
+}
+
+.campo input::placeholder {
+  color: #6d7d73;
+}
+
+.campo input:focus-visible, .botao:focus-visible {
+  outline: 3px solid var(--verde);
+  outline-offset: 3px;
+}
+
+.acoes-formulario, .card-acoes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.acoes-formulario .botao-primario {
+  grid-column: 1 / -1;
+}
+
+.botao {
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.botao-primario {
+  color: #ffffff;
+  background: var(--verde);
+}
+
+.botao-primario:hover {
+  background: var(--verde-escuro);
+}
+
+.botao-secundario, .botao-editar {
+  color: var(--verde);
+  background: var(--verde-claro);
+}
+
+.botao-secundario:hover, .botao-editar:hover {
+  background: #d9eadd;
+}
+
+.botao-remover {
+  color: var(--vermelho);
+  background: #fff0f0;
+}
+
+.botao-remover:hover {
+  background: #f9dede;
+}
+
+.cabecalho-lista {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: var(--espaco);
+}
+
+.contador {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--verde);
+  background: var(--verde-claro);
+}
+
+.lista-contatos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 16px;
+  margin: var(--espaco) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card-contato {
+  display: grid;
+  align-content: space-between;
+  gap: 20px;
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  background: #fafcfb;
+}
+
+.card-info {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.card-nome {
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.card-email, .card-telefone {
+  font-size: 0.875rem;
+  color: var(--texto-suave);
+}
+
+.card-telefone {
+  margin-top: 4px;
+}
+
+.estado-vazio {
+  padding: 48px 20px;
+  border: 1px dashed var(--borda);
+  border-radius: 8px;
+  text-align: center;
+  color: var(--texto-suave);
+  background: #fafcfb;
+}
+
+.rodape {
+  padding: 8px 0 32px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--texto-suave);
+}
+
+@media (max-width: 760px) {
+  .cabecalho, .conteudo, .rodape {
+    width: calc(100% - 32px);
+  }
+
+  .cabecalho {
+    padding-top: 32px;
+  }
+
+  .cabecalho h1 {
+    font-size: 1.75rem;
+  }
+
+  .conteudo {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    padding-block: 24px;
+  }
+
+  .painel {
+    padding: 20px;
+  }
 }
