@@ -33,9 +33,9 @@ Legenda de status: ✅ concluída · ⏳ planejada.
 | 3 | **Dados + persistência** | ✅ | [etapa-03](etapa-03-dados-localstorage.md) | `app.js`: modelo de contato com ID único, funções `carregarContatos()` / `salvarContatos()` usando JSON + Local Storage. |
 | 4 | **Cadastro + listagem + estado vazio** | ✅ | [etapa-04](etapa-04-cadastro-listagem.md) | Cadastrar via formulário, renderizar a lista a partir do array, mensagem de estado vazio. |
 | 5 | **Remoção** | ✅ | [etapa-05](etapa-05-remocao.md) | Ação de remover em cada contato; atualiza array, Local Storage e interface. |
-| 6 | **Edição** | ⏳ | [etapa-06](etapa-06-edicao.md) | Carregar contato no formulário, modo de edição, salvar ou cancelar. |
+| 6 | **Edição** | ✅ | [etapa-06](etapa-06-edicao.md) | Carregar contato no formulário, modo de edição, salvar ou cancelar. |
 | 7 | **Busca e filtro** | ✅ | [etapa-07](etapa-07-busca-filtro.md) | Filtro em tempo real por nome e e-mail, ignorando maiúsculas/minúsculas; mensagem quando não há resultados. |
-| 8 | **Funcionalidade adicional + revisão** | ⏳ | [etapa-08](etapa-08-extra-revisao.md) | Extras (favoritos, ordenação alfabética, contador de contatos), revisão geral e `README.md`. |
+| 8 | **Funcionalidade adicional + revisão** | ✅ | [etapa-08](etapa-08-extra-revisao.md) | Extras (favoritos, ordenação alfabética, contador de contatos), revisão geral e `README.md`. |
 
 ## Organização do JavaScript (responsabilidades)
 - `carregarContatos()` / `salvarContatos()` — persistência.
